@@ -1,0 +1,154 @@
+Xml Code in acivity_main:
+
+  <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/frame_layout"
+            />
+       
+
+
+Java Code in Main Activity:
+
+ protected void loadfragment(Fragment fragment,int id){
+        FragmentManager fragmentManager=getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout,fragment);
+        if((stepforwardcontainers.size()-1)>0){
+            fragmentTransaction.addToBackStack(null);
+        }
+        //fragmentTransaction
+        fragmentTransaction.commit();
+        currentid=id;
+        //if(idcontainers.containsKey(id))
+        if(!stepbackwardcontainers.contains(id)){
+            stepforwardcontainers.add(id);
+
+        }
+    }
+    
+     @Override
+    public void onBackPressed() {
+            if(count>0)
+        {
+            for(int i=count;i>=0;i--){
+                int id=stepforwardcontainers.get(i);
+                if(i==count){
+                    stepbackwardcontainers.add(id);
+                    stepforwardcontainers.remove(i);
+                }
+                if(secondindex==i){
+                    currentid=stepforwardcontainers.get(secondindex);
+                    stepforwardcontainers.remove(secondindex);
+
+                }
+                if(secondindex<0){
+                    stepforwardcontainers.clear();
+                    stepbackwardcontainers.clear();
+                     break;
+                }
+            }
+        }
+        super.onBackPressed();
+        bottomNavigationView.setSelectedItemId(currentid);
+    }
+    
+    
+       private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener
+             =new BottomNavigationView.OnNavigationItemSelectedListener() {
+         @Override
+         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+             boolean r=false;
+             switch (item.getItemId()){
+
+                 case home:
+                     loadfragment(new MainFragment(),home);
+                     idcontainers.put(home,"Mainfragment");
+                     r=true;
+                     break;
+
+                 case download:
+                     loadfragment(new DownloadFragment(),download);
+                     idcontainers.put(download,"downloadfragment");
+                     r=true;
+                     break;
+
+
+                 case profile:
+                     loadfragment(new ProfileFragment(),profile);
+                     idcontainers.put(profile,"profilefragment");
+                     r=true;
+                     break;
+             }
+             return r;
+         }
+     };
+     
+     
+     
+  MainFragment Java code:
+  
+  package com.sample.fargment;
+
+import android.content.Context;
+import android.net.Uri;
+import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.sample.magicaltunes.R;
+
+
+public class MainFragmentt extends Fragment {
+
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
+    public DownloadFragment() {
+        // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_download, container, false);
+    }
+
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        public void onFragmentInteraction(Uri uri);
+    }
+}
+
+
+
+XmlCode for Main Fragment:
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sample.fargment.ProfileFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/hello_blank_fragment" />
+
+</FrameLayout>
+
+
+As useually we have to create another two fragments like mainfragment .
