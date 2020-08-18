@@ -1,0 +1,53 @@
+1)Permission Library:
+
+ DEXTER library   implementation 'com.karumi:dexter:6.2.1'
+ 
+ 
+ 2)Picasso Library:
+ 
+ implementation 'com.squareup.picasso:picasso:2.71828'
+ 
+ 
+ 3)Recyclerview:
+ 
+  implementation "androidx.recyclerview:recyclerview:1.1.0"
+  
+  4)CardView:
+  
+  implementation "androidx.cardview:cardview:1.0.0"
+  
+  
+  5)ExoPlayer-Playerview:
+  
+  implementation 'com.google.android.exoplayer:exoplayer-core:2.10.8'
+    implementation 'com.google.android.exoplayer:exoplayer-dash:2.10.8'
+    implementation 'com.google.android.exoplayer:exoplayer-hls:2.10.8'
+    implementation 'com.google.android.exoplayer:exoplayer-smoothstreaming:2.10.8'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.10.8'
+    
+    
+6)Glide:
+
+
+ implementation 'com.github.bumptech.glide:glide:4.10.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+
+
+7)Sliding Image:
+
+https://github.com/denzcoskun/ImageSlideshow
+	implementation 'com.github.denzcoskun:ImageSlideshow:0.0.7'
+        maven { url 'https://jitpack.io' }
+        
+
+
+
+8)BarCode:
+
+
+    implementation 'me.dm7.barcodescanner:zxing:1.9'
+    
+    
+ 
+ 9)GooglePlayServices:
+ implementation 'com.google.android.gms:play-services-auth:18.1.0'
